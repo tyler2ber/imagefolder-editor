@@ -17,7 +17,11 @@ for filepath in folder_path.iterdir():
 		with Image.open(filepath) as image:
 
 			image_name = image.filename.split('/')[1]
+			image_name_new = image_name # set to change
+
 			image_width, image_height = image.size
+			image_width_new = image_width # set to change
+
 			print(f"====> {image_name} ({image_width}x{image_height})")
 
 			# ask about rename
@@ -36,13 +40,17 @@ for filepath in folder_path.iterdir():
 
 			# ask about resize
 			while True:
-				should_resize_file = input("resize file? (y/n): ")
-				if should_resize_file == "y":
-					print("RESIZING FILE")
+				should_resize_image = input("resize image? (y/n): ")
+				if should_resize_image == "y":
+					print("RESIZING...")
+					image_width_new = input(f"Enter new width for {image_name}({image_width}xheight): ")
 					break
-				elif should_resize_file == "n":
-					print("NOT RESIZING FILE")
+				elif should_resize_image == "n":
+					print("skipping resize...")
 					break
 				else:
 					print("ERROR: enter 'y' or 'n'")
+			print(f"CONFIRMED: {image_width} ==> {image_width_new}")
+
+			# rename and/or resize the image
 			print("[insert_done_message]\n\n")
