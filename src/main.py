@@ -22,15 +22,17 @@ for filepath in folder_path.iterdir():
 
 			# ask about rename
 			while True:
-				should_rename_file = input("rename file? (y/n): ")
-				if should_rename_file == "y":
-					print("RENAMING FILE")
+				should_rename_image = input("rename image? (y/n): ")
+				if should_rename_image == "y":
+					print("RENAMING...")
+					image_name_new = input(f"Enter new name for {image_name}: ") + "." + image.filename.split(".")[1]
 					break
-				elif should_rename_file == "n":
-					print("NOT RENAMING FILE")
+				elif should_rename_image == "n":
+					print("skipping rename...")
 					break
 				else:
 					print("ERROR: enter 'y' or 'n'")
+			print(f"CONFIRMED: {image_name} ==> {image_name_new}")
 
 			# ask about resize
 			while True:
